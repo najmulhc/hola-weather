@@ -27,7 +27,7 @@ function App() {
         weather.main? <WeatherDetails
         city={weather.name}
         feel={weather.weather[0].main}
-        temp={temperature} ></WeatherDetails>:<h1 className='text-2xl rounded-xl text-red-800 m-auto glass-card'>No weather data found yet</h1>
+        temp={temperature} ></WeatherDetails>:<h1 className='text-2xl rounded-xl text-red-800 m-auto glass-card'>No weather data found!</h1>
       }
       </div>
     </div>
