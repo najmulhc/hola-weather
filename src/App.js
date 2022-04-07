@@ -2,11 +2,14 @@
  import { useState } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
+import WeatherDetails from './components/WeatherDetails/WeatherDetails';
 
 function App() {
   const [cityName, setCityName] = useState();
   const [weather,setWeather] = useWeather(cityName); 
-  const tempInKelvin = weather.main.temp;
+  if(weather.main){
+    var  tempInKelvin = weather.main.temp;
+  }
   const temperature = (tempInKelvin -273).toFixed(1);
   
   const handleSearchBtn =()=>{
@@ -18,9 +21,13 @@ function App() {
        setCityName={setCityName}
        handleSearchBtn={handleSearchBtn}
        ></Header>
+       
       <div className="w-full h-96   flex items-center justify-center">
       { 
-        weather.main? <h1 className='text-2xl m-auto rounded-md glass-card'>{weather.name}, {weather.weather[0].main}, Current Tempareture: {temperature}°C</h1>:<h1 className='text-2xl rounded-xl m-auto glass-card'>no weather data found yet</h1>
+        weather.main? <WeatherDetails
+        city={weather.name}
+        feel={weather.weather[0].main}
+        temp={temperature} ></WeatherDetails>:<h1 className='text-2xl rounded-xl text-red-800 m-auto glass-card'>No weather data found yet</h1>
       }
       </div>
     </div>
